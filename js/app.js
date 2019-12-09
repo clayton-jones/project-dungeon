@@ -1,12 +1,16 @@
 'use-strict';
 
+// ======= global variables =======
+
+var charClass = '';
+
 // ======= DOM locations =======
 
 var titleScreen = document.getElementById('title-screen');
 var characterSelectScreen = document.getElementById('character-creation');
-var selectName = document.getElementById('select-name');
-var selectClass = document.getElementById('select-class');
-var characterSummary = document.getElementById('character-summary');
+var selectNameScreen = document.getElementById('select-name');
+var selectClassScreen = document.getElementById('select-class');
+var characterSumScreen = document.getElementById('character-summary');
 
 var nameForm = document.getElementById('char-name');
 
@@ -14,6 +18,11 @@ var nameForm = document.getElementById('char-name');
 
 var newGameButton = document.getElementById('new-game-button');
 var loadGameButton = document.getElementById('load-game-button');
+
+var warriorButton = document.getElementById('warrior-button');
+var rogueButton = document.getElementById('rogue-button');
+var mageButton = document.getElementById('mage-button');
+
 
 // ------- buttons -------
 
@@ -36,6 +45,9 @@ function show (elem) {
 
 newGameButton.addEventListener('click', newGame);
 nameForm.addEventListener('submit', nameSubmit);
+warriorButton.addEventListener('click', selectCharClass);
+rogueButton.addEventListener('click', selectCharClass);
+mageButton.addEventListener('click', selectCharClass);
 
 // ======= end event listeners =======
 
@@ -52,9 +64,18 @@ function nameSubmit(event) {
 
   console.log('name submitted');
 
-  hide(selectName);
-  show(selectClass);
+  hide(selectNameScreen);
+  show(selectClassScreen);
 }
+
+function selectCharClass(event) {
+  event.preventDefault();
+  charClass = event.target.value;
+  console.log('charClass: ', charClass);
+  hide(selectClassScreen);
+  show(characterSumScreen);
+}
+
 
 // ======= event handler functions =======
 
