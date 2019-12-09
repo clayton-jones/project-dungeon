@@ -4,6 +4,7 @@
 
 var charClass = '';
 var charName = '';
+var player = {};
 // ======= DOM locations =======
 
 var titleScreen = document.getElementById('title-screen');
@@ -23,6 +24,7 @@ var warriorButton = document.getElementById('warrior-button');
 var rogueButton = document.getElementById('rogue-button');
 var mageButton = document.getElementById('mage-button');
 
+var startGameButton = document.getElementById('start-game');
 
 // ------- buttons -------
 
@@ -48,11 +50,12 @@ nameForm.addEventListener('submit', nameSubmit);
 warriorButton.addEventListener('click', selectCharClass);
 rogueButton.addEventListener('click', selectCharClass);
 mageButton.addEventListener('click', selectCharClass);
+startGameButton.addEventListener('click', handleGameStart);
 
 // ======= end event listeners =======
 
 
-// ======= event handler functions =======
+// ======= end event handler functions =======
 
 function newGame() {
   hide(titleScreen);
@@ -77,13 +80,34 @@ function selectCharClass(event) {
   show(characterSumScreen);
 }
 
+function handleGameStart(event) {
+  event.preventDefault();
+  console.log('game start');
+  player = new PlayerCharacter(charName, charClass);
+  console.log('player: ', player);
+}
 
-// ======= event handler functions =======
+
+// ======= end event handler functions =======
+
+// ======= core functons =======
 
 function popCharSummary() {
   document.getElementById('summary-name').textContent = charName;
   document.getElementById('summary-class').textContent = charClass;
 }
 
+// ======= end core functons =======
+
+
+// ======= constructor functions =======
+
+function PlayerCharacter(name, characterClass) {
+  this.name = name;
+  this.characterClass = characterClass;
+  this.hp = 100;
+}
+
+// ======= end constructor functions =======
 
 
