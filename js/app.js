@@ -3,7 +3,7 @@
 // ======= global variables =======
 
 var charClass = '';
-
+var charName = '';
 // ======= DOM locations =======
 
 var titleScreen = document.getElementById('title-screen');
@@ -61,8 +61,8 @@ function newGame() {
 
 function nameSubmit(event) {
   event.preventDefault();
-
-  console.log('name submitted');
+  charName = event.target.charName.value;
+  console.log('name: ', charName);
 
   hide(selectNameScreen);
   show(selectClassScreen);
@@ -73,13 +73,17 @@ function selectCharClass(event) {
   charClass = event.target.value;
   console.log('charClass: ', charClass);
   hide(selectClassScreen);
+  popCharSummary();
   show(characterSumScreen);
 }
 
 
 // ======= event handler functions =======
 
-
+function popCharSummary() {
+  document.getElementById('summary-name').textContent = charName;
+  document.getElementById('summary-class').textContent = charClass;
+}
 
 
 
