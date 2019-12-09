@@ -1,0 +1,16 @@
+#character-select, 
+#character-summary, 
+#select-class {
+  display: none;
+}
+
+body {
+  outline: 2px solid blue;
+}
+
+.screen {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  outline: 1px solid green;
+}
