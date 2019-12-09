@@ -3,10 +3,12 @@
 // ======= DOM locations =======
 
 var titleScreen = document.getElementById('title-screen');
-var characterSelectScreen = document.getElementById('character-select');
+var characterSelectScreen = document.getElementById('character-creation');
 var selectName = document.getElementById('select-name');
 var selectClass = document.getElementById('select-class');
 var characterSummary = document.getElementById('character-summary');
+
+var nameForm = document.getElementById('char-name');
 
 // ------- buttons -------
 
@@ -33,6 +35,7 @@ function show (elem) {
 // ======= event listeners =======
 
 newGameButton.addEventListener('click', newGame);
+nameForm.addEventListener('submit', nameSubmit);
 
 // ======= end event listeners =======
 
@@ -42,6 +45,15 @@ newGameButton.addEventListener('click', newGame);
 function newGame() {
   hide(titleScreen);
   show(characterSelectScreen);
+}
+
+function nameSubmit(event) {
+  event.preventDefault();
+
+  console.log('name submitted');
+
+  hide(selectName);
+  show(selectClass);
 }
 
 // ======= event handler functions =======
