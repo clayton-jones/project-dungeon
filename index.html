@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+
+  <title>Project Dungeon</title>
+</head>
+<body>
+  <main>
+    <section id="title-screen" class="screen">
+
+      <h1>Project Dungeon</h1>
+
+      <section id="title-buttons">
+        <!-- <button id="continue" type="button"></button> -->
+        <ul>
+          <li>
+            <button id="new-game-button" type="button">New Game</button>
+          </li>
+          <li>
+            <button id="load-game-button" type="button">Load Game</button>
+          </li>
+        </ul>
+        <!-- <button id="settings" type="button"></button> -->
+      </section>
+
+      <footer id="title-foot">
+        <!-- add credit to me? or copyright? -->
+      </footer>
+
+    </section>
+    <section id="character-creation" class="screen">
+
+      <h2>Character Creation</h2>
+
+      <nav id="character-creation-nav">
+        <ul>
+          <li>
+            <button type="button">name</button>
+          </li>
+          <!-- <li>race</li> -->
+          <li>
+            <button type="button">class</button>
+          </li>
+        </ul>
+      </nav>
+
+      <section id="select-name" class="char-select-sub-screen">
+        <h3>Name</h3>
+        <form id="char-name">
+          <input id="charName" type="text" placeholder="enter character name" required>
+          <button id="name-submit" type="submit">Next</button>
+        </form>
+      </section>
+
+      <section id="select-class" class="character-select-sub-screen">
+        <h3>Class</h3>
+        <ul id="class-list">
+          <li>
+            <button id="warrior-button" type="button" value="Warrior">Warrior</button>
+          </li>
+          <li>
+            <button id="rogue-button" type="button" value="Rogue">Rogue</button>
+          </li>
+          <li>
+            <button id="mage-button" type="button" value="Mage">Mage</button>
+          </li>
+        </ul>
+        <!-- <footer>
+          <button type="button">Back</button>
+          <button type="button">Back to Title</button>
+        </footer> -->
+      </section>
+
+      <section id="character-summary" class="character-select-sub-button">
+        <ul>
+          <li id="summary-name">Name</li>
+          <li id="summary-class">Class</li>
+        </ul>
+        <button id="start-game" type="button">Start Game</button>
+      </section>
+
+    </section>
+
+  </main>
+
+  <footer id="main-foot">
+
+  </footer>
+  <script src="./js/app.js"></script>
+</body>
+</html>
