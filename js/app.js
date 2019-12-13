@@ -5,15 +5,20 @@
 var charClass = '';
 var charName = '';
 var player = {};
+
+var rogue = new Image();
 // ======= DOM locations =======
 
 var titleScreen = document.getElementById('title-screen');
-var characterSelectScreen = document.getElementById('character-creation');
+var characterCreationScreen = document.getElementById('character-creation');
 var selectNameScreen = document.getElementById('select-name');
 var selectClassScreen = document.getElementById('select-class');
 var characterSumScreen = document.getElementById('character-summary');
 
 var nameForm = document.getElementById('char-name');
+
+const canvas = document.getElementById('dungeon-screen');
+
 
 // ------- buttons -------
 
@@ -55,11 +60,11 @@ startGameButton.addEventListener('click', handleGameStart);
 // ======= end event listeners =======
 
 
-// ======= end event handler functions =======
+// ======= event handler functions =======
 
 function newGame() {
   hide(titleScreen);
-  show(characterSelectScreen);
+  show(characterCreationScreen);
 }
 
 function nameSubmit(event) {
@@ -85,6 +90,9 @@ function handleGameStart(event) {
   console.log('game start');
   player = new PlayerCharacter(charName, charClass);
   console.log('player: ', player);
+  hide(characterCreationScreen);
+  show(canvas);
+  draw();
 }
 
 
@@ -95,6 +103,16 @@ function handleGameStart(event) {
 function popCharSummary() {
   document.getElementById('summary-name').textContent = charName;
   document.getElementById('summary-class').textContent = charClass;
+}
+
+function draw() {
+  rogue.src = '/Users/claytonjones/Projects/project-dungeon/img/rogue.png';
+  if (canvas.getContext('2d')) {
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'rgb(200, 0, 0)';
+    ctx.fillRect(10, 10, 50, 50);
+    ctx.drawImage(rogue, 10, 10);
+  }
 }
 
 // ======= end core functons =======
