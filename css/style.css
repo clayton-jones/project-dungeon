@@ -1,6 +1,7 @@
 #character-creation, 
 #character-summary, 
-#select-class {
+#select-class,
+#dungeon-screen {
   display: none;
 }
 
@@ -17,4 +18,9 @@ body {
 
 #character-creation-nav > ul > li {
   display: inline-block;
+}
+
+#dungeon-screen {
+  outline: 1px solid purple;
+  margin: auto;
 }
