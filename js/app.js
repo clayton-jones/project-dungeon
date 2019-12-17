@@ -6,7 +6,8 @@ var charClass = '';
 var charName = '';
 var player = {};
 
-var rogue = new Image();
+
+var debug = true;
 // ======= DOM locations =======
 
 var titleScreen = document.getElementById('title-screen');
@@ -106,13 +107,56 @@ function popCharSummary() {
 }
 
 function draw() {
-  rogue.src = '/Users/claytonjones/Projects/project-dungeon/img/rogue.png';
-  if (canvas.getContext('2d')) {
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = 'rgb(200, 0, 0)';
-    ctx.fillRect(10, 10, 50, 50);
-    ctx.drawImage(rogue, 10, 10);
+  // rogue.src = '/Users/claytonjones/Projects/project-dungeon/img/rogue.png';
+  // if (canvas.getContext('2d')) {
+  //   const ctx = canvas.getContext('2d');
+  //   ctx.fillStyle = 'rgb(200, 0, 0)';
+  //   ctx.fillRect(10, 10, 50, 50);
+  //   ctx.drawImage(rogue, 10, 10);
+  // }
+
+  var stage = new createjs.Stage('dungeon-screen');
+  var rogue = new createjs.Bitmap('../img/rogue.png');
+  rogue.scaleX = 0.5;
+  rogue.scaleY = 0.5;
+  stage.addChild(rogue);
+  if (debug) {
+    console.log('added rogue');
   }
+  // var circle = new createjs.Shape();
+  // circle.graphics.beginFill('DeepSkyBlue').drawCircle(0, 0, 50);
+  // circle.x = 100;
+  // circle.y = 100;
+  // stage.addChild(circle);
+
+  // var circle2 = new createjs.Shape();
+  // circle2.graphics.beginFill('Red').drawCircle(0, 0, 10);
+  // circle2.x = 300;
+  // circle2.y = 100;
+  // stage.addChild(circle2);
+  // stage.update();
+
+  // createjs.Tween.get(circle, { loop: true })
+  //   .to({ x: 400 }, 1000, createjs.Ease.getPowInOut(16))
+  //   .to({ alpha: 0, y: 175 }, 500, createjs.Ease.getPowInOut(2))
+  //   .to({ alpha: 0, y: 225 }, 100)
+  //   .to({ alpha: 1, y: 200 }, 500, createjs.Ease.getPowInOut(2))
+  //   .to({ x: 100 }, 800, createjs.Ease.getPowInOut(2));
+
+  // createjs.Tween.get(circle2, {loop: true})
+  //   .to({x: 100}, 1000, createjs.Ease.getPowInOut(16))
+  //   .to({alpha: 0}, 500, createjs.Ease.getPowInOut(2))
+  //   .to({alpha: 1}, 1000, createjs.Ease.getPowInOut(2))
+  //   .to({x: 300}, 500, createjs.Ease.getPowInOut(16));
+
+  createjs.Tween.get(rogue, {loop: true})
+    .to({x: 100}, 1000, createjs.Ease.getPowInOut(16))
+    .to({alpha: 0}, 500, createjs.Ease.getPowInOut(2))
+    .to({alpha: 1}, 1000, createjs.Ease.getPowInOut(2))
+    .to({x: 300}, 500, createjs.Ease.getPowInOut(16));
+
+  createjs.Ticker.framerate = 60;
+  createjs.Ticker.addEventListener('tick', stage);
 }
 
 // ======= end core functons =======
