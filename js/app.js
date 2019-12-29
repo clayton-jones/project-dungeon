@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 'use-strict';
 
 // ======= global variables =======
@@ -51,8 +52,42 @@ function show (elem) {
 
 // ======= event listeners =======
 
-newGameButton.addEventListener('click', newGame);
-nameForm.addEventListener('submit', nameSubmit);
+
+$(function() {
+  console.log('jquery');
+  $('#new-game-button').click(function() {
+    console.log('new game button clicked');
+    $('#title-screen').hide();
+    $('#character-creation').show();
+  });
+
+  $('#char-name').on('submit', function(event) {
+    event.preventDefault();
+    charName = $('#char-name input').val();
+    console.log('name: ', charName);
+
+    $('#select-name').hide();
+    $('#select-class').show();
+  });
+
+  $('#class-list').click(function(event) {
+    if (event.target.value) {
+      event.preventDefault();
+      charClass = event.target.value;
+      console.log('event target value: ', event.target.value);
+      console.log('charClass: ', charClass);
+      $('#select-class').hide();
+      // hide(selectClassScreen);
+      popCharSummary();
+      $('#character-summary').show();
+      // show(characterSumScreen);
+
+    }
+  });
+});
+
+// newGameButton.addEventListener('click', newGame);
+// nameForm.addEventListener('submit', nameSubmit);
 warriorButton.addEventListener('click', selectCharClass);
 rogueButton.addEventListener('click', selectCharClass);
 mageButton.addEventListener('click', selectCharClass);
@@ -63,19 +98,19 @@ startGameButton.addEventListener('click', handleGameStart);
 
 // ======= event handler functions =======
 
-function newGame() {
-  hide(titleScreen);
-  show(characterCreationScreen);
-}
+// function newGame() {
+//   hide(titleScreen);
+//   show(characterCreationScreen);
+// }
 
-function nameSubmit(event) {
-  event.preventDefault();
-  charName = event.target.charName.value;
-  console.log('name: ', charName);
+// function nameSubmit(event) {
+//   event.preventDefault();
+//   charName = event.target.charName.value;
+//   console.log('name: ', charName);
 
-  hide(selectNameScreen);
-  show(selectClassScreen);
-}
+//   hide(selectNameScreen);
+//   show(selectClassScreen);
+// }
 
 function selectCharClass(event) {
   event.preventDefault();
@@ -107,49 +142,18 @@ function popCharSummary() {
 }
 
 function draw() {
-  // rogue.src = '/Users/claytonjones/Projects/project-dungeon/img/rogue.png';
-  // if (canvas.getContext('2d')) {
-  //   const ctx = canvas.getContext('2d');
-  //   ctx.fillStyle = 'rgb(200, 0, 0)';
-  //   ctx.fillRect(10, 10, 50, 50);
-  //   ctx.drawImage(rogue, 10, 10);
-  // }
 
   var stage = new createjs.Stage('dungeon-screen');
   var rogue = new createjs.Bitmap('../img/rogue.png');
   rogue.scaleX = 0.5;
   rogue.scaleY = 0.5;
   stage.addChild(rogue);
+
   if (debug) {
     console.log('added rogue');
   }
-  // var circle = new createjs.Shape();
-  // circle.graphics.beginFill('DeepSkyBlue').drawCircle(0, 0, 50);
-  // circle.x = 100;
-  // circle.y = 100;
-  // stage.addChild(circle);
 
-  // var circle2 = new createjs.Shape();
-  // circle2.graphics.beginFill('Red').drawCircle(0, 0, 10);
-  // circle2.x = 300;
-  // circle2.y = 100;
-  // stage.addChild(circle2);
-  // stage.update();
-
-  // createjs.Tween.get(circle, { loop: true })
-  //   .to({ x: 400 }, 1000, createjs.Ease.getPowInOut(16))
-  //   .to({ alpha: 0, y: 175 }, 500, createjs.Ease.getPowInOut(2))
-  //   .to({ alpha: 0, y: 225 }, 100)
-  //   .to({ alpha: 1, y: 200 }, 500, createjs.Ease.getPowInOut(2))
-  //   .to({ x: 100 }, 800, createjs.Ease.getPowInOut(2));
-
-  // createjs.Tween.get(circle2, {loop: true})
-  //   .to({x: 100}, 1000, createjs.Ease.getPowInOut(16))
-  //   .to({alpha: 0}, 500, createjs.Ease.getPowInOut(2))
-  //   .to({alpha: 1}, 1000, createjs.Ease.getPowInOut(2))
-  //   .to({x: 300}, 500, createjs.Ease.getPowInOut(16));
-
-  createjs.Tween.get(rogue, {loop: true})
+  createjs.Tween.get(rogue, {loop: false})
     .to({x: 100}, 1000, createjs.Ease.getPowInOut(16))
     .to({alpha: 0}, 500, createjs.Ease.getPowInOut(2))
     .to({alpha: 1}, 1000, createjs.Ease.getPowInOut(2))
