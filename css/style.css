@@ -1,7 +1,11 @@
 #character-creation, 
 #character-summary, 
 #select-class,
-#dungeon-screen {
+#dungeon-screen,
+#combat-screen,
+#warrior-img,
+#rogue-img,
+#mage-img {
   display: none;
 }
 
@@ -11,6 +15,7 @@ body {
 
 .screen {
   width: 80%;
+  height: 500px;
   margin: auto;
   text-align: center;
   outline: 1px solid green;
@@ -23,4 +28,15 @@ body {
 #dungeon-screen {
   outline: 1px solid purple;
   margin: auto;
+}
+
+#dungeon-screen > ul > li,
+#class-list > li {
+  display: inline-block;
+}
+
+#warrior-img,
+#rogue-img,
+#mage-img {
+  width: 200px;
 }

@@ -8,7 +8,7 @@ var charName = '';
 var player = {};
 
 
-var debug = true;
+// var debug = true;
 // ======= DOM locations =======
 
 // var titleScreen = document.getElementById('title-screen');
@@ -54,11 +54,14 @@ var debug = true;
 
 
 $(function() {
+
+  // event listener for new game button
   $('#new-game-button').click(function() {
     $('#title-screen').hide();
     $('#character-creation').show();
   });
 
+  // event listener for name form
   $('#char-name').on('submit', function(event) {
     event.preventDefault();
     charName = $('#char-name input').val();
@@ -67,6 +70,7 @@ $(function() {
     $('#select-class').show();
   });
 
+  // event listener for class buttons
   $('#class-list').click(function(event) {
     if (event.target.value) {
       event.preventDefault();
@@ -80,15 +84,75 @@ $(function() {
     }
   });
 
+  // event listener for class img show
+  // $('#class-list').mouseenter(function(event) {
+  //   event.preventDefault();
+  //   let buttonValue = event.target.value;
+
+  //   switch (buttonValue) {
+  //   case 'Warrior':
+  //     $(this).siblings().hide();
+  //     $('#warrior-img').show();
+  //     break;
+  //   case 'Rogue':
+  //     $(this).siblings().hide();
+  //     $('#rogue-img').show();
+  //     break;
+  //   case 'Mage':
+  //     $(this).siblings().hide();
+  //     $('#rogue-img').show();
+  //     break;
+  //   }
+
+  // });
+
+  $('#warrior-button').hover(
+    function() {
+      $('#warrior-img').show();
+    },
+    function() {
+      $('#warrior-img').hide();
+    }
+  );
+
+  $('#rogue-button').hover(
+    function() {
+      $('#rogue-img').show();
+    },
+    function() {
+      $('#rogue-img').hide();
+    }
+  );
+
+  $('#mage-button').hover(
+    function() {
+      $('#mage-img').show();
+    },
+    function() {
+      $('#mage-img').hide();
+    }
+  );
+
+  // event listener for class img hide all when mouse leaves list
+
+  // event listener for start game button
   $('#start-game').click(function(event) {
     event.preventDefault();
     player = new PlayerCharacter(charName, charClass);
     console.log('player:', player);
     $('#character-creation').hide();
     $('#dungeon-screen').show().css('display', 'block');
-    draw();
+    // draw();
   });
 
+  // event listener for left and right buttons
+  $('#left-right-buttons').click(function(event) {
+    if (event.target.value) {
+      $('#dungeon-screen').hide();
+      $('#combat-screen').show();
+      console.log('You went', event.target.value);
+    }
+  });
 });
 
 // newGameButton.addEventListener('click', newGame);
@@ -146,27 +210,27 @@ function popCharSummary() {
   $('#summary-class').text(charClass);
 }
 
-function draw() {
+// function draw() {
 
-  var stage = new createjs.Stage('dungeon-screen');
-  var rogue = new createjs.Bitmap('../img/rogue.png');
-  rogue.scaleX = 0.5;
-  rogue.scaleY = 0.5;
-  stage.addChild(rogue);
+//   var stage = new createjs.Stage('dungeon-screen');
+//   var rogue = new createjs.Bitmap('../img/rogue.png');
+//   rogue.scaleX = 0.5;
+//   rogue.scaleY = 0.5;
+//   stage.addChild(rogue);
 
-  if (debug) {
-    console.log('added rogue');
-  }
+//   if (debug) {
+//     console.log('added rogue');
+//   }
 
-  createjs.Tween.get(rogue, {loop: false})
-    .to({x: 100}, 1000, createjs.Ease.getPowInOut(16))
-    .to({alpha: 0}, 500, createjs.Ease.getPowInOut(2))
-    .to({alpha: 1}, 1000, createjs.Ease.getPowInOut(2))
-    .to({x: 300}, 500, createjs.Ease.getPowInOut(16));
+//   createjs.Tween.get(rogue, {loop: false})
+//     .to({x: 100}, 1000, createjs.Ease.getPowInOut(16))
+//     .to({alpha: 0}, 500, createjs.Ease.getPowInOut(2))
+//     .to({alpha: 1}, 1000, createjs.Ease.getPowInOut(2))
+//     .to({x: 300}, 500, createjs.Ease.getPowInOut(16));
 
-  createjs.Ticker.framerate = 60;
-  createjs.Ticker.addEventListener('tick', stage);
-}
+//   createjs.Ticker.framerate = 60;
+//   createjs.Ticker.addEventListener('tick', stage);
+// }
 
 // ======= end core functons =======
 
