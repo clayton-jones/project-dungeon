@@ -11,27 +11,27 @@ var player = {};
 var debug = true;
 // ======= DOM locations =======
 
-var titleScreen = document.getElementById('title-screen');
-var characterCreationScreen = document.getElementById('character-creation');
-var selectNameScreen = document.getElementById('select-name');
-var selectClassScreen = document.getElementById('select-class');
-var characterSumScreen = document.getElementById('character-summary');
+// var titleScreen = document.getElementById('title-screen');
+// var characterCreationScreen = document.getElementById('character-creation');
+// var selectNameScreen = document.getElementById('select-name');
+// var selectClassScreen = document.getElementById('select-class');
+// var characterSumScreen = document.getElementById('character-summary');
 
-var nameForm = document.getElementById('char-name');
+// var nameForm = document.getElementById('char-name');
 
-const canvas = document.getElementById('dungeon-screen');
+// const canvas = document.getElementById('dungeon-screen');
 
 
 // ------- buttons -------
 
-var newGameButton = document.getElementById('new-game-button');
-var loadGameButton = document.getElementById('load-game-button');
+// var newGameButton = document.getElementById('new-game-button');
+// var loadGameButton = document.getElementById('load-game-button');
 
-var warriorButton = document.getElementById('warrior-button');
-var rogueButton = document.getElementById('rogue-button');
-var mageButton = document.getElementById('mage-button');
+// var warriorButton = document.getElementById('warrior-button');
+// var rogueButton = document.getElementById('rogue-button');
+// var mageButton = document.getElementById('mage-button');
 
-var startGameButton = document.getElementById('start-game');
+// var startGameButton = document.getElementById('start-game');
 
 // ------- buttons -------
 
@@ -39,13 +39,13 @@ var startGameButton = document.getElementById('start-game');
 
 // ======= helper functions =======
 
-function hide (elem) {
-  elem.style.display = 'none';
-}
+// function hide (elem) {
+//   elem.style.display = 'none';
+// }
 
-function show (elem) {
-  elem.style.display = 'block';
-}
+// function show (elem) {
+//   elem.style.display = 'block';
+// }
 
 // ======= end helper functions =======
 
@@ -54,9 +54,7 @@ function show (elem) {
 
 
 $(function() {
-  console.log('jquery');
   $('#new-game-button').click(function() {
-    console.log('new game button clicked');
     $('#title-screen').hide();
     $('#character-creation').show();
   });
@@ -64,7 +62,6 @@ $(function() {
   $('#char-name').on('submit', function(event) {
     event.preventDefault();
     charName = $('#char-name input').val();
-    console.log('name: ', charName);
 
     $('#select-name').hide();
     $('#select-class').show();
@@ -74,24 +71,32 @@ $(function() {
     if (event.target.value) {
       event.preventDefault();
       charClass = event.target.value;
-      console.log('event target value: ', event.target.value);
       console.log('charClass: ', charClass);
       $('#select-class').hide();
       // hide(selectClassScreen);
       popCharSummary();
       $('#character-summary').show();
       // show(characterSumScreen);
-
     }
   });
+
+  $('#start-game').click(function(event) {
+    event.preventDefault();
+    player = new PlayerCharacter(charName, charClass);
+    console.log('player:', player);
+    $('#character-creation').hide();
+    $('#dungeon-screen').show().css('display', 'block');
+    draw();
+  });
+
 });
 
 // newGameButton.addEventListener('click', newGame);
 // nameForm.addEventListener('submit', nameSubmit);
-warriorButton.addEventListener('click', selectCharClass);
-rogueButton.addEventListener('click', selectCharClass);
-mageButton.addEventListener('click', selectCharClass);
-startGameButton.addEventListener('click', handleGameStart);
+// warriorButton.addEventListener('click', selectCharClass);
+// rogueButton.addEventListener('click', selectCharClass);
+// mageButton.addEventListener('click', selectCharClass);
+// startGameButton.addEventListener('click', handleGameStart);
 
 // ======= end event listeners =======
 
@@ -112,24 +117,24 @@ startGameButton.addEventListener('click', handleGameStart);
 //   show(selectClassScreen);
 // }
 
-function selectCharClass(event) {
-  event.preventDefault();
-  charClass = event.target.value;
-  console.log('charClass: ', charClass);
-  hide(selectClassScreen);
-  popCharSummary();
-  show(characterSumScreen);
-}
+// function selectCharClass(event) {
+//   event.preventDefault();
+//   charClass = event.target.value;
+//   console.log('charClass: ', charClass);
+//   hide(selectClassScreen);
+//   popCharSummary();
+//   show(characterSumScreen);
+// }
 
-function handleGameStart(event) {
-  event.preventDefault();
-  console.log('game start');
-  player = new PlayerCharacter(charName, charClass);
-  console.log('player: ', player);
-  hide(characterCreationScreen);
-  show(canvas);
-  draw();
-}
+// function handleGameStart(event) {
+//   event.preventDefault();
+//   console.log('game start');
+//   player = new PlayerCharacter(charName, charClass);
+//   console.log('player: ', player);
+//   hide(characterCreationScreen);
+//   show(canvas);
+//   draw();
+// }
 
 
 // ======= end event handler functions =======
@@ -137,8 +142,8 @@ function handleGameStart(event) {
 // ======= core functons =======
 
 function popCharSummary() {
-  document.getElementById('summary-name').textContent = charName;
-  document.getElementById('summary-class').textContent = charClass;
+  $('#summary-name').text(charName);
+  $('#summary-class').text(charClass);
 }
 
 function draw() {
